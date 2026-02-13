@@ -6,9 +6,12 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { links } from "../data/dummy";
 
+import { useStateContext } from '../contexts/ContextProvider'
+
 const Sidebar = () => {
 
-  const activeMenu = true
+  // To Control Open and Close Sidebar
+  const { activeMenu , setActiveMenu } = useStateContext();
 
   // Links Style Classes Active OR Not Active
   const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
@@ -21,13 +24,14 @@ const Sidebar = () => {
       <div className="flex justify-between items-center">
 
         {/* Home Link */}
-        <Link to='/' onClick={ ()=> {} } className="flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white ">
+        <Link to='/' onClick={ ()=> setActiveMenu(false) } className="flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white ">
           <SiShopware className="text-3xl"/> <span>Shoppy</span>
         </Link>
         
         {/* Close Menu Button */}
         <TooltipComponent content='Menu' position="BottomCenter">
-          <button type="button" onClick={ ()=> {} } className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden" > <MdOutlineCancel/> </button>
+          {/* Toggle The Menu */}
+          <button type="button" onClick={ ()=> setActiveMenu( ( prevActiveMenu ) => !prevActiveMenu  ) } className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden" > <MdOutlineCancel/> </button>
         </TooltipComponent>
 
       </div>
