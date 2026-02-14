@@ -11,7 +11,15 @@ import { useStateContext } from '../contexts/ContextProvider'
 const Sidebar = () => {
 
   // To Control Open and Close Sidebar
-  const { activeMenu , setActiveMenu } = useStateContext();
+  const { activeMenu , setActiveMenu , screenSize } = useStateContext();
+
+  // Make Sidebar Close Automatically After User Click in Navlink In Mobile & Small Devices To Make UX Good
+  const handleCloseSideBar = () => {
+    if ( activeMenu && screenSize <= 900 ) {
+      setActiveMenu(false);
+    }
+  }
+
 
   // Links Style Classes Active OR Not Active
   const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
@@ -24,7 +32,7 @@ const Sidebar = () => {
       <div className="flex justify-between items-center">
 
         {/* Home Link */}
-        <Link to='/' onClick={ ()=> setActiveMenu(false) } className="flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white ">
+        <Link to='/' onClick={ handleCloseSideBar } className="flex items-center gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white ">
           <SiShopware className="text-3xl"/> <span>Shoppy</span>
         </Link>
         
@@ -47,7 +55,7 @@ const Sidebar = () => {
             
             { item.links.map( (link) => (
               // link Is Navlinks inside Category link
-              <NavLink to={`/${link.name}`} key={link.name} onClick={ () => {} } className={ ( { isActive } ) => isActive ? activeLink : normaLink }>
+              <NavLink to={`/${link.name}`} key={link.name} onClick={ handleCloseSideBar } className={ ( { isActive } ) => isActive ? activeLink : normaLink }>
                 { link.icon }
                 <span className="capitalize"> { link.name } </span>
               </NavLink>

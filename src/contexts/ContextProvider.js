@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 const StateContext = createContext();
 
+// The initial State For Navbar Buttons
 const initialState = {
   chat: false,
   cart: false,
@@ -10,12 +11,25 @@ const initialState = {
 };
 
 export const ContextProvider = ({ children }) => {
+
+  // State To Open And Close Sidebar Menu
   const [activeMenu, setActiveMenu] = useState(true);
+
+  // To Choose Opened Navbar Button
+  const [isClicked, setIsClicked] = useState(initialState);
+
+  // Reset all states to false by this Copy ...initialState and open the selected one
+  const handleClick = ( clicked ) => {
+    setIsClicked( { ...initialState , [ clicked ] : true } );
+  };
+
+  // To Handle Screen Size For Sidebar
+  const [screenSize, setScreenSize] = useState(undefined);
 
   return (
     <StateContext.Provider
-      // Share activeMenu, setActiveMenu State To all Components
-      value={{ activeMenu, setActiveMenu }}>
+      // Share States And Her Sets To all Components
+      value={{ activeMenu, setActiveMenu , isClicked, setIsClicked , handleClick , screenSize , setScreenSize }}>
       {children}
     </StateContext.Provider>
   );
