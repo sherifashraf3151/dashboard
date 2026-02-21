@@ -15,8 +15,7 @@ const ColorMapping = () => {
         <ChartComponent id="charts" primaryXAxis={ColorMappingPrimaryXAxis} primaryYAxis={ColorMappingPrimaryYAxis} chartArea={{ border: { width: 0 } }} legendSettings={{ mode: 'Range', background: 'white' }} tooltip={{ enable: true }} background={currentMode === 'Dark' ? '#33373E' : '#fff'} >
           <Inject services={[ColumnSeries, Tooltip, Category, Legend]} />
           <SeriesCollectionDirective>
-            <SeriesDirective dataSource={colorMappingData[0]} name="USA" xName="x" yName="y" type="Column" cornerRadius={{ topLeft: 10, topRight: 10, }}
-            />
+            <SeriesDirective dataSource={colorMappingData[0]} name="USA" xName="x" yName="y" type="Column" cornerRadius={{ topLeft: 10, topRight: 10, }} />
           </SeriesCollectionDirective>
           <RangeColorSettingsDirective>
             {rangeColorMapping.map((item, index) => <RangeColorSettingDirective key={index} {...item} />)}
