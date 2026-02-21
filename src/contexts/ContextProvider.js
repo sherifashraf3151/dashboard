@@ -20,6 +20,9 @@ export const ContextProvider = ({ children }) => {
 
   // Reset all states to false by this Copy ...initialState and open the selected one
   const handleClick = ( clicked ) => { setIsClicked( { ...initialState , [ clicked ] : true } ); };
+  const closeClicked = (clicked) => {
+  setIsClicked({ ...initialState, [clicked]: false });
+};
 
   // Theme Settings Values and Sets Functions
   const [currentColor, setCurrentColor] = useState('#03C9D7');
@@ -42,7 +45,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <StateContext.Provider
       // Share States And Her Sets To all Components
-      value={{ activeMenu, setActiveMenu , isClicked, setIsClicked , handleClick , screenSize , setScreenSize , setCurrentColor, setCurrentMode, setMode, setColor, currentColor , currentMode , themeSettings , setThemeSettings }}>
+      value={{ activeMenu, setActiveMenu , isClicked, setIsClicked , handleClick , closeClicked, screenSize , setScreenSize , setCurrentColor, setCurrentMode, setMode, setColor, currentColor , currentMode , themeSettings , setThemeSettings }}>
       {children}
     </StateContext.Provider>
   );
