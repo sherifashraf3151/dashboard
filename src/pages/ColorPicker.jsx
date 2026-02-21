@@ -5,7 +5,8 @@ import { Header } from '../components';
 
 const change = (args) => {
   document.getElementById('preview').style.backgroundColor = args.currentValue.rgba;
-  document.getElementById('Pallete').innerText = args.currentValue.rgba;
+  document.getElementById('PalleteRgba').innerText = args.currentValue.rgba;
+  document.getElementById('PalleteHex').innerText = args.currentValue.hex;
 };
 
 const CustomColorPicker = ({ id, mode }) => 
@@ -20,7 +21,8 @@ const ColorPicker = () => {
       <div className="text-center">
         {/* Pen Preview */}
         <div id='preview' />
-        <p   id='Pallete'></p>
+        <p   id='PalleteRgba'></p>
+        <p   id='PalleteHex'></p>
 
         {/* Start Color Pickers */}
         <div className="flex justify-center items-center gap-20 flex-wrap">
