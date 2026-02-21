@@ -17,4 +17,4 @@ const Kanban = () => {
   )
 }
 
-export default Kanbane
+export default Kanban
