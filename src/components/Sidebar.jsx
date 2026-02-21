@@ -11,7 +11,7 @@ import { useStateContext } from '../contexts/ContextProvider'
 const Sidebar = () => {
 
   // To Control Open and Close Sidebar
-  const { activeMenu , setActiveMenu , screenSize } = useStateContext();
+  const { activeMenu , setActiveMenu , screenSize , currentColor } = useStateContext();
 
   // Make Sidebar Close Automatically After User Click in Navlink In Mobile & Small Devices To Make UX Good
   const handleCloseSideBar = () => {
@@ -55,7 +55,7 @@ const Sidebar = () => {
             
             { item.links.map( (link) => (
               // link Is Navlinks inside Category link
-              <NavLink to={`/${link.name}`} key={link.name} onClick={ handleCloseSideBar } className={ ( { isActive } ) => isActive ? activeLink : normaLink }>
+              <NavLink to={`/${link.name}`} key={link.name} style={ ({ isActive }) => ( { backgroundColor: isActive ? currentColor : '' } ) } onClick={ handleCloseSideBar } className={ ( { isActive } ) => isActive ? activeLink : normaLink }>
                 { link.icon }
                 <span className="capitalize"> { link.name } </span>
               </NavLink>

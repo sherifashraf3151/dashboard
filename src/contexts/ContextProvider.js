@@ -19,9 +19,22 @@ export const ContextProvider = ({ children }) => {
   const [isClicked, setIsClicked] = useState(initialState);
 
   // Reset all states to false by this Copy ...initialState and open the selected one
-  const handleClick = ( clicked ) => {
-    setIsClicked( { ...initialState , [ clicked ] : true } );
-  };
+  const handleClick = ( clicked ) => { setIsClicked( { ...initialState , [ clicked ] : true } ); };
+
+  // Theme Settings Values and Sets Functions
+  const [currentColor, setCurrentColor] = useState('#03C9D7');
+  const [currentMode, setCurrentMode] = useState('Light');
+  const [themeSettings, setThemeSettings] = useState(false);
+  const setMode = (e) => {
+    setCurrentMode( e.target.value );
+    localStorage.setItem('themeMode' , e.target.value );
+    setThemeSettings(false);
+  }
+  const setColor = (color) => {
+    setCurrentColor( color );
+    localStorage.setItem('themeColor' , color );
+    setThemeSettings(false);
+  }
 
   // To Handle Screen Size For Sidebar
   const [screenSize, setScreenSize] = useState(undefined);
@@ -29,7 +42,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <StateContext.Provider
       // Share States And Her Sets To all Components
-      value={{ activeMenu, setActiveMenu , isClicked, setIsClicked , handleClick , screenSize , setScreenSize }}>
+      value={{ activeMenu, setActiveMenu , isClicked, setIsClicked , handleClick , screenSize , setScreenSize , setCurrentColor, setCurrentMode, setMode, setColor, currentColor , currentMode , themeSettings , setThemeSettings }}>
       {children}
     </StateContext.Provider>
   );
